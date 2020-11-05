@@ -1,0 +1,100 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #dad7cd;
+}
+h1{
+    font-weight: lighter;
+    margin: 0;
+}
+
+.tapCircle{
+    width: 304px;
+    height: 304px;
+    border:transparent 2px solid;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+.btn-inicio{
+    width: 304px;
+    height: 70px;
+    border: transparent 1px solid;
+    box-shadow: 2px 2px 10px;
+    background-color: white;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: 0;
+}
+
+.btn-inicio:active{
+    animation-name: click;
+    animation-duration: .1s;
+    animation-timing-function: ease-in-out;
+}
+.hide{
+    display: none;
+}
+.rojo.light{
+    background: #c40128;
+
+
+}
+.amarillo.light{
+
+    background: #af9c0a;
+    
+}
+.naranja.light{
+    background: #229cac;
+    
+}
+.azul.light{
+    background: #ac5305;
+    
+}
+@keyframes click{
+    from{
+        transform: 0;
+    }
+    to{
+        transform: scale(.95);
+    }
+}
+
+
+.boton{
+    width: 150px;
+    height: 150px;
+    border: transparent 1px solid;
+}
+
+.rojo{
+    border-top-left-radius: 100%;
+    background: #510010;
+    
+}
+.amarillo{
+    border-top-right-radius: 100%;
+    background: #4c4404;
+    
+}
+.naranja{
+    border-bottom-left-radius: 100%;
+    background: #0c3c42;
+}
+
+.azul{
+    border-bottom-right-radius: 100%;
+    background: #492302;
+
+}

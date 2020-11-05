@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width = device-width , initial-scale=1.0">
+        <link rel="stylesheet" href="Simonstyles.css">
+        <title>El juego de Simón</title>
+
+    </head>
+    <body>
+        <div class="juego">
+            <div class="tapCircle">
+                <button class="btn-inicio" onclick="iniciarJuego()" id="btn-inicio"><h1>¡Iniciar juego!</h1></button>
+                <div class="boton rojo" id="rojo" data-color="rojo"></div>
+                <div class="boton amarillo" id="amarillo" data-color="amarillo"></div>
+                <div class="boton naranja" id="naranja" data-color="naranja"></div>
+                <div class="boton azul" id="azul" data-color="azul"></div>
+            </div>
+        </div>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="juego.js"></script>
+    </body> 
+</html>
