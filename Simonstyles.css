@@ -6,10 +6,39 @@ body{
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     background: #dad7cd;
+    position: relative;
 }
 h1{
     font-weight: lighter;
     margin: 0;
+}
+
+.music{
+    position: absolute;
+    bottom: -170px;
+    width: 200px;
+}
+
+.counter{
+    width: 100px;
+    height: 50px;
+    top: -105px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    
+}
+.counter::after{
+    content: attr(data-count);
+    color: black;
+    font-weight: lighter;
+    font-size: 64px;
+    text-align: center;
+
+
 }
 
 .tapCircle{
@@ -21,6 +50,8 @@ h1{
     position: relative;
     justify-content: center;
     align-items: center;
+
+
 }
 .btn-inicio{
     width: 304px;

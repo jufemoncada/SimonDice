@@ -1,21 +1,27 @@
 const $btnInicio = document.getElementById('btn-inicio')
+const contador = document.getElementById('contador')
+const chillMusic = document.getElementById('chillMusic')
+const correctSound = document.getElementById('correct')
+const gameOverSound = document.getElementById('gameOver')
 const rojo = document.getElementById('rojo')
 const amarillo = document.getElementById('amarillo')
 const naranja = document.getElementById('naranja')
 const azul = document.getElementById('azul')
 const ULTIMO_NIVEL = 10
 
+
 class Juego {
     constructor(){
         this.inicializar = this.inicializar.bind(this)
         this.inicializar()
         this.generarSecuencia()
-        setTimeout(this.siguienteNivel, 500)  //siempre con el setTimeout JS delega las funciones y se la pasa a window y por eso el this cambia
+        setTimeout(this.siguienteNivel, 1000)  //siempre con el setTimeout JS delega las funciones y se la pasa a window y por eso el this cambia
     }
     
     inicializar(){
         this.elegirColor = this.elegirColor.bind(this)
         this.siguienteNivel = this.siguienteNivel.bind(this)
+        chillMusic.play()
         // $btnInicio.classList.add('hide')
         this.toggleBtnEmpezar()
         // guardo los niveles y los colores
@@ -26,7 +32,7 @@ class Juego {
             naranja,
             azul
         }
-        console.log(this)
+
     }
 
     toggleBtnEmpezar(){
@@ -36,6 +42,7 @@ class Juego {
             $btnInicio.classList.add('hide')
         }
     }
+
 
     
     generarSecuencia(){
@@ -47,6 +54,16 @@ class Juego {
         this.subnivel = 0
         this.iluminarSecuencia()
         this.agregarEventosClick()
+    }
+
+    contarPuntaje(){
+        const count = Number(contador.getAttribute('data-count'))||0
+        contador.setAttribute('data-count', count + 1)
+    }
+
+    resetPuntaje(){
+        const count = Number(contador.getAttribute('data-count'))
+        contador.setAttribute('data-count', count * 0)
     }
 
     iluminarSecuencia(){
@@ -88,25 +105,30 @@ class Juego {
 
         if (numeroColor === this.secuencia[this.subnivel]){ //si el numero es igual al numero del color de la secuencia(array) en el subnivel, haga
             this.subnivel++
+            correctSound.play()
+            this.contarPuntaje()
             if (this.subnivel === this.nivel){
                 this.nivel++
                 this.eliminarEventosClick()
                 if (this.nivel === (ULTIMO_NIVEL + 1)){  //J.S alcanza a llegar al nivel 11 pero es ahi cuando le decimos que ganó
                     this.ganoElJuego()
                 } else {
-                    setTimeout(this.siguienteNivel, 1000 ); 
+                    setTimeout(this.siguienteNivel, 2000 ); 
                 }
             } 
         }else{
             this.perdioElJuego()
+            gameOverSound.play()
         }
     }
     
     
     ganoElJuego(){
         swal('Simón dice:', '¡Ganaste!', 'success') //este devuelve una promesa
-        .then(this.inicializar) //como solo pasamos una funcion basta con ponerlo asi
-
+        .then(()=>{
+            this.inicializar()
+            this.resetPuntaje() //como solo pasamos una funcion basta con ponerlo asi solo entre parentesis
+        })
     }
 
     perdioElJuego(){
@@ -114,6 +136,8 @@ class Juego {
         .then(()=>{
             this.eliminarEventosClick()
             this.inicializar()           //en cambio aca si es importante ponerlos () porque hay mas de una funcion para llamar
+            this.resetPuntaje()
+
         })
     }
 
